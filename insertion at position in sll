@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node*next;
+};
+struct node*head,*tail,*temp,*newNode,*prev;
+void sll(int num)
+{
+  newNode=(struct node*)malloc(sizeof(struct node));
+  newNode->data=num;
+  newNode->next=NULL;
+  if(head==NULL)
+  {
+    head=newNode;
+    tail=newNode;
+  }
+  else
+  {
+    tail->next=newNode;
+    tail=newNode;
+  }
+}
+void insertion_at_start(int num)
+{
+    newNode=(struct node*)malloc(sizeof(struct node));
+    newNode->data=num;
+    newNode->next=NULL;
+    if(head==NULL)
+    {
+        head=newNode;
+        tail=newNode;
+    }
+    else
+    {
+      newNode->next=head;
+      head=newNode;
+    }
+}
+
+void insertion_at_pos(int num)
+{
+    int pos,i=1;
+    scanf("%d",&pos);
+    newNode=(struct node*)malloc(sizeof(struct node));
+    newNode->data=num;
+    newNode->next=NULL;
+    if(head==NULL)
+    {
+        head=newNode;
+        tail=newNode;
+    }
+    if(pos==1)
+    {
+        insertion_at_start(num);
+    }
+    else
+    {
+        temp=head;
+        while(i<pos)
+        {
+            prev=temp;
+            temp=temp->next;
+            i++;
+        }
+            prev->next=newNode;
+            newNode->next=temp;
+
+
+    }
+}
+void display()
+{
+    temp=head;
+    while(temp->next!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+    printf("%d",temp->data);
+}
+int main()
+{
+  sll(10);
+  sll(20);
+  sll(30);
+  sll(40);
+  insertion_at_pos(70);
+  insertion_at_start(50);
+  display();
+}
+
