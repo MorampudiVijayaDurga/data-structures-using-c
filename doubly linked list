@@ -1,0 +1,61 @@
+
+#include <stdio.h>
+struct node
+{
+    int data;
+    struct node*next;
+    struct node*prev;
+};
+struct node*head,*tail,*temp,*newNode;
+void dll(int num)
+{
+  newNode=(struct node*)malloc(sizeof(struct node));
+  newNode->data=num;
+  newNode->next=NULL;
+  newNode->prev=NULL;
+  if(head==NULL)
+  {
+    head=newNode;
+    tail=newNode;
+  }
+  else
+  {
+
+    tail->next=newNode;
+    newNode->prev=tail;
+    tail=newNode;
+  }
+
+}
+void display()
+{
+    temp=head;
+    while(temp->next!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+    printf("%d ",temp->data);
+    printf("\n");
+}
+void backDisplay()
+{
+    temp=tail;
+    while(temp->prev!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->prev;
+    }
+    printf("%d",temp->data);
+
+
+}
+int main()
+{
+  dll(10);
+  dll(20);
+  dll(30);
+  dll(40);
+  display();
+  backDisplay();
+}
