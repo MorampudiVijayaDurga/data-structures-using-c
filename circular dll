@@ -1,0 +1,84 @@
+#include <stdio.h>
+struct node
+{
+    int data;
+    struct node*next;
+    struct node*prev;
+};
+struct node*head,*tail,*temp,*newNode;
+void enqueue(int num)
+{
+  newNode=(struct node*)malloc(sizeof(struct node));
+  newNode->data=num;
+  newNode->next=NULL;
+  if(head==NULL)
+  {
+    head=newNode;
+    tail=newNode;
+    tail->next=head;
+    head->prev=tail;
+  }
+  else
+  {
+    tail->next=newNode;
+    newNode->prev=tail;
+    tail=newNode;
+    tail->next=head;
+    head->prev=tail;
+  }
+}
+void dequeue()
+{
+    if(head==NULL)
+    {
+        printf("queue is empty");
+    }
+    else
+    {
+      temp=head;
+      head=head->next;
+      tail->next=head;
+      head->prev=tail;
+      temp->next=NULL;
+      free(temp);
+    }
+}
+void display()
+{
+    temp=head;
+    while(temp->next!=head)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+    printf("%d",temp->data);
+    printf("\n");
+}
+void displayBack()
+{
+   temp=tail;
+   while(temp->prev!=tail)
+   {
+       printf("%d ",temp->data);
+       temp=temp->prev;
+   }
+   printf("%d ",temp->data);
+
+}
+int main()
+{
+  enqueue(10);
+  enqueue(20);
+  enqueue(30);
+  enqueue(40);
+  dequeue();
+  display();
+  printf("\n");
+  displayBack();
+  printf("\n");
+  enqueue(60);
+  display();
+  printf("\n");
+  displayBack();
+}
+
