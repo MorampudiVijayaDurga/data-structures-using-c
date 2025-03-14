@@ -1,0 +1,64 @@
+A#include <stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node*next;
+};
+struct node*head1,*tail1,*head2,*tail2,*temp,*newNode;
+void sll1(int num)
+{
+  newNode=(struct node*)malloc(sizeof(struct node));
+  newNode->data=num;
+  newNode->next=NULL;
+  if(head1==NULL)
+  {
+    head1=newNode;
+    tail1=newNode;
+  }
+  else
+  {
+    tail1->next=newNode;
+    tail1=newNode;
+  }
+
+}
+void sll2(int num)
+{
+  newNode=(struct node*)malloc(sizeof(struct node));
+  newNode->data=num;
+  newNode->next=NULL;
+  if(head2==NULL)
+  {
+    head2=newNode;
+    tail2=newNode;
+  }
+  else
+  {
+    tail2->next=newNode;
+    tail2=newNode;
+  }
+}
+void display()
+{
+    tail1->next=head2;
+    temp=head1;
+    while(temp->next!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+    printf("%d ",temp->data);
+}
+int main()
+{
+  sll1(10);
+  sll1(20);
+  sll1(30);
+  sll1(40);
+  sll2(50);
+  sll2(60);
+  sll2(70);
+  sll2(80);
+  display();
+}
